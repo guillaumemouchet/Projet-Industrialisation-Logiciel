@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Welcome</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  </head>
+</html>
+
+<body>
+    <div class="container">
+        <div class="jumbotron p-3">
+            <h1 class="display-4">ezPWD</h1>
+            <p class="lead">Are you too lazy to generate a random password by typing random characters hoping it will be right ? We got you !</p>
+
+            <form action="generate_password" method="post">
+                <div class="form-group">
+                    <label for="pwd_len">Select password length [15,20]</label>
+                    <input type="number" class="form-control" id="pwd_len" name="pwd_len" value="15" min="15" max="20" style="width: 200px;">
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="is_readable" name="is_readable" value="True" checked>
+                    <label for="is_readable">Generate a readable password</label><br>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Generate!"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
