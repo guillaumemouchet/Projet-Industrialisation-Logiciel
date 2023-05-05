@@ -25,7 +25,7 @@ default:
 image-creation:
   stage: build-image
   tags:
-    - personal-docker
+    - personnal-docker
   image:
     name: gcr.io/kaniko-project/executor:v1.9.0-debug
     entrypoint: [""]
