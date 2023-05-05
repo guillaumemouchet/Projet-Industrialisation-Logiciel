@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import string
 import random
 import datetime
+import requests
 
 # Project setup inspired from Flask workshop https://www.matthieuamiguet.ch/media/misc/flask2023/tuto/tuto.html
 # Session setup: https://pythonbasics.org/flask-sessions/
@@ -79,12 +80,17 @@ def random_password(pwd_len, is_readable):
         pwd.append(random.choice(char_list))
 
     random.shuffle(pwd)
-    logPwd(pwd_len, is_readable)
+    log = generate_log(pwd_len, is_readable)
+    logger_url = "http://127.0.0.1:8000/log"
+    response = requests.post(logger_url, data={"log": log})
+    if response.status_code != 200:
+        print("Logging failed ", response.status_code)
+    # logPwd(pwd_len, is_readable)
+
     return "".join(pwd)
 
 
-def logPwd(pwd_len, is_readable):
-    f = open("log.txt", "a")
+def generate_log(pwd_len, is_readable):
     now = datetime.datetime.now().strftime("%I:%M %d.%m.%Y")
-    f.write(f"[{now}] {pwd_len} {is_readable}\n")
-    f.close()
+    log = f"[{now}] {pwd_len} {is_readable}\n"
+    return log
