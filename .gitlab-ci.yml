@@ -1,14 +1,21 @@
 image: python:3.10
 
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  STAGE_ID: ${CI_PROJECT_NAME}_${CI_BUILD_REF_NAME}_${CI_JOB_NAME}_${CI_JOB_ID}
+  DOCKER_DRIVER: overlay2 # this helps speed our Docker containers a bit because by default it uses vfs which is slower
+  CACHE_TTL: 2190h0m0s # three months
+
 stages:
   - build-image
   - pytest
   - create-package
   - sonarqube-check
 
-variables:
-  DOCKER_DRIVER: overlay2 # this helps speed our Docker containers a bit because by default it uses vfs which is slower
-  CACHE_TTL: 2190h0m0s # three months
+cache:
+  paths:
+    - .cache/pip
+    - venv/
 
 default:
   before_script:
@@ -19,7 +26,7 @@ default:
 # Docker-in-Docker requires privileged mode to function, which is a significant security concern.
 build-image-job:
   tags:
-    - personal-docker # here we specify the runner to use
+    - personnal-docker # here we specify the runner to use
   image:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: [""]
