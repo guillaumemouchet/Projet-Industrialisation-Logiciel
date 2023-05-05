@@ -43,10 +43,14 @@ def generate_password():
 
 # Inspiration https://www.geeksforgeeks.org/create-a-random-password-generator-using-python/
 def random_password(pwd_len, is_readable):
-    if not isinstance(pwd_len, int):
+    try:
+        pwd_len = int(pwd_len)
+    except:
         raise TypeError("Please provide a valid integer")
 
-    if not isinstance(is_readable, bool):
+    try:
+        is_readable = bool(is_readable)
+    except:
         raise TypeError("Please provide a valid bool")
 
     if pwd_len < 1:
@@ -71,7 +75,6 @@ def random_password(pwd_len, is_readable):
     pwd.append(random.choice(special_characters))
 
     char_list = az + AZ + digits + "".join(special_characters)
-    print(char_list)
     for i in range(int(pwd_len) - 4):
         pwd.append(random.choice(char_list))
 

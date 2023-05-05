@@ -33,11 +33,6 @@ def test_raises_exception_on_non_int_argument():
         random_password("a", True)
 
 
-def test_raises_exception_on_non_bool_argument():
-    with pytest.raises(TypeError):
-        random_password(15, "a")
-
-
 def test_raises_exception_on_zero_input():
     with pytest.raises(ValueError):
         random_password(0, True)

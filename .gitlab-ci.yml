@@ -21,7 +21,7 @@ pytest:
     - pytest
 
 sonarqube-check:
-  image: 
+  image:
     name: sonarsource/sonar-scanner-cli:latest
     entrypoint: [""]
   variables:
@@ -31,7 +31,7 @@ sonarqube-check:
     key: "${CI_JOB_NAME}"
     paths:
       - .sonar/cache
-  script: 
+  script:
     - sonar-scanner
   allow_failure: true
   rules:
@@ -45,5 +45,3 @@ package-creation:
   artifacts:
     paths:
       - dist/*.whl
-
-
