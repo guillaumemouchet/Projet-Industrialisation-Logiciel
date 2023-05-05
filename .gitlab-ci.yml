@@ -21,27 +21,14 @@ default:
   before_script:
     - export TAG="${CI_COMMIT_TAG:-latest}" && echo $TAG # If the pipeline was triggered by a tag, use the tag value, otherwise use "latest"
 
-# https://docs.gitlab.com/ee/ci/docker/using_kaniko.html
-# kaniko solves two problems with using the Docker-in-Docker build method:
-# Docker-in-Docker requires privileged mode to function, which is a significant security concern.
-build-image-job:
-  tags:
-    - personnal-docker # here we specify the runner to use
-  image:
-    name: gcr.io/kaniko-project/executor:debug
-    entrypoint: [""]
-  timeout: 6 hours
+docker_build:
   stage: build-image
+  image: sonarqube:8.9-community:latest
+  tags:
+    - personnal-docker
   script:
-    - mkdir -p /kaniko/.docker
-    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"auth\":\"$(printf "%s:%s" "${CI_REGISTRY_USER}" "${CI_REGISTRY_PASSWORD}" | base64 | tr -d '\n')\"},\"$CI_DEPENDENCY_PROXY_SERVER\":{\"auth\":\"$(printf "%s:%s" ${CI_DEPENDENCY_PROXY_USER} "${CI_DEPENDENCY_PROXY_PASSWORD}" | base64 | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
-    - >-
-      /kaniko/executor
-      --context "${CI_PROJECT_DIR}"
-      --dockerfile "${CI_PROJECT_DIR}/Dockerfile"
-      --destination "${CI_REGISTRY_IMAGE}:${TAG}"
-      --cache=true
-      --cache-ttl $CACHE_TTL
+    - docker pull $CI_REGISTRY_IMAGE:latest || true
+    - docker build --cache-from $CI_REGISTRY_IMAGE:latest -t $CI_REGISTRY_IMAGE:latest
 
 pytest-job:
   stage: pytest
