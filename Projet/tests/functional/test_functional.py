@@ -25,12 +25,12 @@ class TestSeleniumFunctional:
         generate_button = browser.find_element(By.ID, "home_submit")
         generate_button.click()
 
-        generated_pwd = browser.find_element(By.ID, "generated_pwd")
-
+        generated_pwd = browser.find_element(By.ID, "generated_pwd").text
+        
         regenerat_btn = browser.find_element(By.ID, "regenerate")
         regenerat_btn.click()
 
-        new_pwd = browser.browser.find_element(By.ID, "generated_pwd")
+        new_pwd = browser.find_element(By.ID, "generated_pwd").text
 
         # https://stackoverflow.com/questions/101128/how-do-i-read-text-from-the-windows-clipboard-in-python
         copy_button = browser.find_element(By.ID, "copy_pwd")
