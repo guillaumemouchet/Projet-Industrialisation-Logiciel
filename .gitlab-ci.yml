@@ -41,8 +41,8 @@ pytest-job:
     name: gitlab-etu.ing.he-arc.ch:5050/guillaum.mouchet/projet-indu-log:latest
   script:
     - pip install --upgrade pip setuptools
-    - pip install -r requirements.txt
-    - pytest
+    - pip install -r Projet/requirements.txt
+    - Projet/pytest
 
 create-package-job:
   stage: create-package
