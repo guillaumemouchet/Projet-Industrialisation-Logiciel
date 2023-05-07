@@ -7,10 +7,10 @@ variables:
   CACHE_TTL: 2190h0m0s # three months
 
 stages:
-  #- build-image
-  #- pytest
-  #- create-package
   - sonar-check
+  - build-image
+  - pytest
+  - create-package
 
 cache:
   paths:
@@ -75,7 +75,7 @@ sonarqube-check:
     paths:
       - .sonar/cache
   script:
-    - sonar-scanner
+    - sonar-scanner -X
   allow_failure: true
   rules:
     - if: $CI_COMMIT_BRANCH == 'main'
