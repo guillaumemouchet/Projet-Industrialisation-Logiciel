@@ -8,9 +8,9 @@ variables:
 
 stages:
   - sonar-check
-  #- build-image
-  #- pytest
-  #- create-package
+  - build-image
+  - pytest
+  - create-package
   
 
 cache:
