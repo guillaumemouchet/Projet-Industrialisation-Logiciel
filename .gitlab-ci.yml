@@ -42,7 +42,7 @@ pytest-job:
   script:
     - pip install --upgrade pip setuptools
     - pip install -r Projet/requirements.txt
-    - pytest
+    - python -m pytest /tests
 
 create-package-job:
   stage: create-package
