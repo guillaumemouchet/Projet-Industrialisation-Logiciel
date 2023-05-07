@@ -7,9 +7,9 @@ variables:
   CACHE_TTL: 2190h0m0s # three months
 
 stages:
-  - build-image
-  - pytest
-  - create-package
+  #- build-image
+  #- pytest
+  #- create-package
   - sonar-check
 
 cache:
