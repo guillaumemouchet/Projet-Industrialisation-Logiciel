@@ -43,6 +43,11 @@ pytest-job:
     - cd Projet
     - pip install --upgrade pip setuptools
     - pip install -r requirements.txt
+    - FLASK_APP=main.py flask run --debug
+    - cd logger
+    - export FLASK_RUN_PORT=8000
+    - FLASK_APP=logger.py flask run --debug
+    - cd ..
     - python -m pytest tests/
 
 create-package-job:
