@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY Projet/requirements.txt requirements.txt
 
-RUN pip3 install -r Projet/requirements.txt
+RUN pip3 install -r requirements.txt
 
 COPY ./src .
 
