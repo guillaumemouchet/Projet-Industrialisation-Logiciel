@@ -40,9 +40,10 @@ pytest-job:
   image:
     name: gitlab-etu.ing.he-arc.ch:5050/guillaum.mouchet/projet-indu-log:latest
   script:
+    - cd Projet
     - pip install --upgrade pip setuptools
-    - pip install -r Projet/requirements.txt
-    - python -m pytest /tests
+    - pip install -r requirements.txt
+    - python -m pytest tests/
 
 create-package-job:
   stage: create-package
