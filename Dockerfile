@@ -17,3 +17,7 @@ COPY ./Projet .
 #- cd ..
 
 CMD ["python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+
+RUN cd logger
+RUN export FLASK_RUN_PORT=8000
+CMD ["python3", "-m" , "flask", "run", "--host=0.0.0.0"]
