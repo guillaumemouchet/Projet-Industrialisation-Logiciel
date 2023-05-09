@@ -13,9 +13,17 @@ class TestSeleniumFunctional:
         # options = Options()
         # options.binary_location = r'mnt/c/Program Files/Mozilla Firefox/firefox.exe'
         # Loads Geckodriver
+        # browser = webdriver.Firefox(
+        #     service=Service(executable_path=GeckoDriverManager().install())  # ,
+        #     # options=options
+        # )        
+    
+        # Loads Geckodriver in headless mode (to avoid opening a browser window)
+        options = webdriver.FirefoxOptions()
+        options.add_argument('-headless')
         browser = webdriver.Firefox(
-            service=Service(executable_path=GeckoDriverManager().install())  # ,
-            # options=options
+            service=Service(executable_path=GeckoDriverManager().install()),
+            options=options
         )
 
         # Opens HE-Arc website.
