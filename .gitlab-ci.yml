@@ -17,6 +17,9 @@ default:
 
 pytest-job:
   stage: pytest
+  needs:
+    - job: pytest-job
+      artifacts: true
   tags:
     - personnal-docker
   image:
