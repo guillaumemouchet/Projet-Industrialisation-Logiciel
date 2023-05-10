@@ -37,7 +37,7 @@ pytest-job:
     - python3 -m pytest --cov=. --cov-report=xml
   artifacts:
     paths:
-      - coverage.xml
+      - Projet/coverage.xml
 
 image-creation:
   stage: build-image
