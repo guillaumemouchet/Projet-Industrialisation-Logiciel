@@ -27,7 +27,6 @@ def test_random_password_generation_chars(input, output):
     pwd = random_password(input[0], input[1])
     assert any([x in pwd for x in confusing_characters]) == output
 
-
 def test_raises_exception_on_non_int_argument():
     with pytest.raises(TypeError):
         random_password("a", True)

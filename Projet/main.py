@@ -54,10 +54,10 @@ def random_password(pwd_len, is_readable):
     except (TypeError, ValueError) as e:
         raise e("Please provide a valid integer")
 
-    try:
-        is_readable = bool(is_readable)
-    except TypeError:
-        raise TypeError("Please provide a valid bool")
+    #try:
+    is_readable = bool(is_readable)
+    #except TypeError:
+    #    raise TypeError("Please provide a valid bool")
 
     if pwd_len < 1:
         raise ValueError("Please enter an integer above 0")
