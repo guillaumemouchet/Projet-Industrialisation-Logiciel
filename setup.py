@@ -7,5 +7,7 @@ setup(
     long_description=open("README.md").read(),
     author="benjamin.mouchet, guillaume.mouchet",
     package_dir={"EzPwd": "."},
-    install_requires=open("requirements.txt").readlines(),
+    install_requires=open("Projet/requirements.txt").readlines(),
 )
+
+
