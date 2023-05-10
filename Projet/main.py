@@ -51,8 +51,8 @@ def generate_password():
 def random_password(pwd_len, is_readable):
     try:
         pwd_len = int(pwd_len)
-    except TypeError:
-        raise TypeError("Please provide a valid integer")
+    except (TypeError, ValueError) as e:
+        raise e("Please provide a valid integer")
 
     try:
         is_readable = bool(is_readable)
