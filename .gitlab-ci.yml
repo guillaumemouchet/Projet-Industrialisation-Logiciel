@@ -34,7 +34,7 @@ pytest-job:
     - export FLASK_APP=logger.py
     - python3 -m flask run -p 8000 &
     - cd ..
-    - python3 -m  pytest tests/ --cov=. --cov-report=xml
+    - python3 -m pytest --cov=. --cov-report=xml
   artifacts:
     paths:
       - coverage.xml
