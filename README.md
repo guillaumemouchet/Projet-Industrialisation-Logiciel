@@ -1,6 +1,10 @@
 # projet-indu-log
 
-Ce projet a été réalisé durant le cours d'Industrialisation du Logiciel. Il a pour but de mettre en pratique des éléments d'intégrations continus. Nous avons décidé de créer un générateur de mots-de-passe grâce à Flask..
+Ce projet a été réalisé durant le cours d'Industrialisation du Logiciel. Il a pour but de mettre en pratique des éléments d'intégrations continus. Nous avons décidé de créer un générateur de mots-de-passe grâce à Flask.
+
+# Before pushing -> WARNING
+
+Don't forget the change the version in the setup.py. The creation of the wheel won't work if the versions are the same.
 
 # Comment lancer le projet
 

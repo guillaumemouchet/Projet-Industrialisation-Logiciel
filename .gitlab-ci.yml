@@ -17,9 +17,6 @@ default:
 
 pytest-job:
   stage: pytest
-  needs:
-    - job: pytest-job
-      artifacts: true
   tags:
     - personnal-docker
   image:
@@ -74,6 +71,9 @@ create-package-job:
 
 sonarqube-check:
   stage: pytest
+  needs:
+    - job: pytest-job
+      artifacts: true
   tags:
     - personnal-docker
   image:

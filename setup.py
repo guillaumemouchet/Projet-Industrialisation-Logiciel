@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="EzPwd",
-    version="0.1.0",
+    version="0.1.1", # TODO Change manually
     description="password address with flask",
     long_description=open("README.md").read(),
     author="benjamin.mouchet, guillaume.mouchet",
