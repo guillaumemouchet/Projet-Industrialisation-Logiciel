@@ -11,12 +11,11 @@ app = Flask(__name__)
 
 @app.post("/log")
 def log():
-    logPwd(request.form.get("log"))
+    log_pwd(request.form.get("log"))
     return "Log successful"
 
 
-def logPwd(log):
+def log_pwd(log):
     f = open("log.txt", "a")
-    now = datetime.datetime.now().strftime("%I:%M %d.%m.%Y")
     f.write(log)
     f.close()

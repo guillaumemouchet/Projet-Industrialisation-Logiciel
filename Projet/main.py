@@ -2,12 +2,15 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import string
 import random
 import datetime
+import secrets
 import requests
+from flask_wtf import CSRFProtect
 
 # Project setup inspired from Flask workshop https://www.matthieuamiguet.ch/media/misc/flask2023/tuto/tuto.html
 # Session setup: https://pythonbasics.org/flask-sessions/
 
 app = Flask(__name__)
+csrf = CSRFProtect(app)
 app.secret_key = "secret"
 
 # Taken from the special character and ambiguous list from Bitwarden
@@ -22,13 +25,15 @@ def hello():
 
 @app.get("/display_password")
 def display_password():
+  
     pwd = session.get("pwd")
     pwd_len = session.get("pwd_len")
     is_readable = session.get("is_readable")
     return render_template("display_password.html", **locals())
 
 
-@app.post("/generate_password")
+#@app.post("/generate_password")
+@app.route("/generate_password", methods=['POST'])
 def generate_password():
     pwd_len = request.form["pwd_len"]
     try:
@@ -46,12 +51,12 @@ def generate_password():
 def random_password(pwd_len, is_readable):
     try:
         pwd_len = int(pwd_len)
-    except:
+    except TypeError:
         raise TypeError("Please provide a valid integer")
 
     try:
         is_readable = bool(is_readable)
-    except:
+    except TypeError:
         raise TypeError("Please provide a valid bool")
 
     if pwd_len < 1:
@@ -70,14 +75,14 @@ def random_password(pwd_len, is_readable):
 
     pwd = []
     # Making shure there is at least one of each
-    pwd.append(random.choice(az))
-    pwd.append(random.choice(AZ))
-    pwd.append(random.choice(digits))
-    pwd.append(random.choice(special_characters))
+    pwd.append(secrets.choice(az))
+    pwd.append(secrets.choice(AZ))
+    pwd.append(secrets.choice(digits))
+    pwd.append(secrets.choice(special_characters))
 
     char_list = az + AZ + digits + "".join(special_characters)
     for i in range(int(pwd_len) - 4):
-        pwd.append(random.choice(char_list))
+        pwd.append(secrets.choice(char_list))
 
     random.shuffle(pwd)
     log = generate_log(pwd_len, is_readable)

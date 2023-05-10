@@ -15,9 +15,6 @@ def test_perf():
     profiler.runctx("f(p1, p2)", {"f": random_password, "p1": 15, "p2": False}, {})
     profiler.runctx("f(p1, p2)", {"f": random_password, "p1": 20, "p2": True}, {})
     profiler.runctx("f(p1, p2)", {"f": random_password, "p1": 20, "p2": False}, {})
-    # profiler.run("password_perf(15, False)")
-    # profiler.run("password_perf(20, True)")
-    # profiler.run("password_perf(20, False)")
 
     # - Stopper le profilage
     profiler.disable()
