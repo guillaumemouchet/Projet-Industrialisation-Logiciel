@@ -84,6 +84,7 @@ sonarqube-check:
     paths:
       - .sonar/cache
   script:
+    - ls -R
     - sonar-scanner -X
   allow_failure: true
   rules:
