@@ -19,7 +19,7 @@ def replace_datetime(log):
 
 
 def get_log():
-    with open("log.txt", "r") as f:
+    with open("./logger/log.txt", "r") as f:
         last_line = f.readlines()[-1]
     return replace_datetime(last_line)
 
