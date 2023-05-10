@@ -29,12 +29,12 @@ pytest-job:
     - pip install --upgrade pip setuptools
     - pip install -r requirements.txt
     - export FLASK_APP=main.py
-    - python3 -m flask run -p 5000 #FLASK_APP=main.py
+    - python3 -m flask run -p 5000 &
     - cd logger
     - export FLASK_APP=logger.py
     - python3 -m flask run -p 8000 &
     - cd ..
-    - python3 -m  pytest tests/ #--cov=. --cov-report=xml
+    - python3 -m  pytest tests/ --cov=. --cov-report=xml
 
   artifacts:
     paths:
