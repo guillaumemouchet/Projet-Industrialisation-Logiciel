@@ -22,10 +22,11 @@ pytest-job:
   image:
     name: selenium/standalone-firefox
   script:
-    - cd Projet
     - sudo apt-get update
+    - sudo apt-get install xclip
     - sudo apt-get install python3
     - sudo apt-get install python3-pip -y
+    - cd Projet
     - pip install --upgrade pip setuptools
     - pip install -r requirements.txt
     - export FLASK_APP=main.py
