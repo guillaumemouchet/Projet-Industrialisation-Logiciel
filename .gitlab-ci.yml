@@ -23,7 +23,6 @@ pytest-job:
     name: selenium/standalone-firefox
   script:
     - sudo apt-get update
-    - sudo apt-get install xclip
     - sudo apt-get install python3
     - sudo apt-get install python3-pip -y
     - cd Projet
