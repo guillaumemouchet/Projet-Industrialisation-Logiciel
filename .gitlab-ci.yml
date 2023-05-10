@@ -7,19 +7,35 @@ variables:
   CACHE_TTL: 2190h0m0s # three months
 
 stages:
-  - build-image
   - pytest
+  - build-image
   - create-package
-  - sonar-check
-
-cache:
-  paths:
-    - .cache/pip
-    - venv/
 
 default:
   before_script:
     - export TAG="${CI_COMMIT_TAG:-latest}" && echo $TAG # If the pipeline was triggered by a tag, use the tag value, otherwise use "latest"
+
+pytest-job:
+  stage: pytest
+  tags:
+    - personnal-docker
+  image:
+    name: selenium/standalone-firefox
+  script:
+    - cd Projet
+    - sudo apt-get update
+    - sudo apt-get install python3
+    - sudo apt-get install python3-pip -y
+    - pip install --upgrade pip setuptools
+    - pip install -r requirements.txt
+    - python3 -m flask run -p 8000 &
+    - cd logger
+    - python3 -m flask run -p 5000 &
+    - cd ..
+    - python -m pytest tests/ #--cov=. --cov-report=xml
+  artifacts:
+    paths:
+      - coverage.xml
 
 image-creation:
   stage: build-image
@@ -35,16 +51,6 @@ image-creation:
       --dockerfile "${CI_PROJECT_DIR}/Dockerfile"
       --destination "${CI_REGISTRY_IMAGE}:${CI_COMMIT_TAG}"
 
-pytest-job:
-  stage: pytest
-  image:
-    name: gitlab-etu.ing.he-arc.ch:5050/guillaum.mouchet/projet-indu-log:latest
-  script:
-    - cd Projet
-    - pip install --upgrade pip setuptools
-    - pip install -r requirements.txt
-    - python -m pytest tests/
-
 create-package-job:
   stage: create-package
   image:
@@ -58,7 +64,7 @@ create-package-job:
       - dist/*.whl
 
 sonarqube-check:
-  stage: sonar-check
+  stage: pytest
   image:
     name: sonarsource/sonar-scanner-cli:latest
     entrypoint: [""]
