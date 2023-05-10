@@ -55,6 +55,8 @@ image-creation:
 
 create-package-job:
   stage: create-package
+  tags:
+    - personnal-docker
   image:
     name: gitlab-etu.ing.he-arc.ch:5050/guillaum.mouchet/projet-indu-log:latest
   script:
@@ -67,6 +69,8 @@ create-package-job:
 
 sonarqube-check:
   stage: pytest
+  tags:
+    - personnal-docker
   image:
     name: sonarsource/sonar-scanner-cli:latest
     entrypoint: [""]
