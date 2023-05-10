@@ -35,7 +35,6 @@ pytest-job:
     - python3 -m flask run -p 8000 &
     - cd ..
     - python3 -m  pytest tests/ --cov=. --cov-report=xml
-
   artifacts:
     paths:
       - coverage.xml
