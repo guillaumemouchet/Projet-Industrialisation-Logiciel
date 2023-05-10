@@ -8,15 +8,7 @@ import pyperclip
 
 class TestSeleniumFunctional:
     def test_get_pwd(self):
-        """Opens the project and tests if a password is generated on btn click"""
-
-        # options = Options()
-        # options.binary_location = r'mnt/c/Program Files/Mozilla Firefox/firefox.exe'
-        # Loads Geckodriver
-        # browser = webdriver.Firefox(
-        #     service=Service(executable_path=GeckoDriverManager().install())  # ,
-        #     # options=options
-        # )        
+        """Opens the project and tests if a password is generated on btn click"""   
     
         # Loads Geckodriver in headless mode (to avoid opening a browser window)
         options = webdriver.FirefoxOptions()
@@ -44,7 +36,7 @@ class TestSeleniumFunctional:
         copy_button = browser.find_element(By.ID, "copy_pwd")
         copy_button.click()
 
-        # copied_pwd = pyperclip.paste()
+        # copied_pwd = pyperclip.paste() # Works locally
 
         # Close Geckodriver
         browser.quit()
