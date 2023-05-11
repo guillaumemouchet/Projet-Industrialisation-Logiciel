@@ -4,14 +4,11 @@ RUN addgroup --system nonroot && adduser --system --ingroup nonroot nonroot
 
 WORKDIR /app
 
-COPY Projet/requirements.txt requirements.txt
+COPY . .
 
-RUN pip3 install -r requirements.txt
-
-COPY ./Projet .
-
+RUN pip install Flask
 #ENV FLASK_DEBUG=true
-ENV FLASK_APP="main.py"
+ENV FLASK_APP="logger.py"
 
 USER nonroot
 
