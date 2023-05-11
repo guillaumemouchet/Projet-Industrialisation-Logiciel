@@ -23,12 +23,5 @@ def test_perf():
     # - Afficher les résultats dans la console.
     pstats.Stats(profiler).sort_stats("ncalls").print_stats()
 
-
-# NOTE
-# contrairement aux autres exercices, ici pour tester vous pouvez
-# simplement appeler le fichier avec la commande python. Notez
-# qu'il suffirait de renomer ce fichier et la fonction main() avec
-# "test_" comme préfixe pour qu'elle soit automatiquement executée
-# par la commande pytest.
 if __name__ == "__main__":
     test_perf()
