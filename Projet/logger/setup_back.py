@@ -6,8 +6,8 @@ setup(
     description="password address with flask",
     long_description=open("README.md").read(),
     author="benjamin.mouchet, guillaume.mouchet",
-    package_dir={"EzPwd_Back": "."},
-    install_requires=open("requirements.txt").readlines(),
+    package_dir={"EzPwd_Back": "Projet/logger/."},
+    install_requires=open("Projet/logger/requirements.txt").readlines(),
 )
 
 
