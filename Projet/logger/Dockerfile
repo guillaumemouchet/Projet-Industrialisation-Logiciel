@@ -4,11 +4,7 @@ RUN addgroup --system nonroot && adduser --system --ingroup nonroot nonroot
 
 WORKDIR /app
 
-RUN ls
-
 COPY requirements.txt requirements.txt
-
-RUN ls
 
 RUN pip3 install -r requirements.txt
 
