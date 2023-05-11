@@ -92,7 +92,7 @@ create-package-job-back:
   script:
     - pip install build twine
     - ls
-    - python setup_back.py bdist_wheel
+    - python Projet/logger/setup_back.py bdist_wheel
     - TWINE_PASSWORD=${CI_JOB_TOKEN} TWINE_USERNAME=gitlab-ci-token python -m twine upload --repository-url ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/pypi dist/*
   artifacts:
     paths:
