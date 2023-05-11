@@ -11,6 +11,7 @@ RUN pip3 install -r requirements.txt
 COPY ./Projet .
 
 #ENV FLASK_DEBUG=true
+ENV FLASK_APP="main.py"
 
 USER nonroot
 

@@ -34,13 +34,13 @@ class TestSeleniumFunctional:
         new_pwd = browser.find_element(By.ID, "generated_pwd").text
 
         # https://stackoverflow.com/questions/101128/how-do-i-read-text-from-the-windows-clipboard-in-python
-        copy_button = browser.find_element(By.ID, "copy_pwd")
-        copy_button.click()
-
+        # copy_button = browser.find_element(By.ID, "copy_pwd")
+        # copy_button.click()
         # copied_pwd = pyperclip.paste() # Works locally
 
         # Close Geckodriver
         browser.quit()
         assert len(generated_pwd) == 15
         assert len(new_pwd) == 15
+        assert new_pwd != generated_pwd
         # assert new_pwd == copied_pwd # Works only locally
