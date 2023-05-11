@@ -6,6 +6,8 @@ WORKDIR /app
 
 COPY . .
 
+RUN Ls
+
 RUN pip install Flask
 #ENV FLASK_DEBUG=true
 
