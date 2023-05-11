@@ -40,7 +40,7 @@ pytest-job:
     paths:
       - coverage.xml
 
-image-creation:
+image-creation-front:
   stage: build-image
   tags:
     - personnal-docker
@@ -52,7 +52,21 @@ image-creation:
     - /kaniko/executor
       --context "${CI_PROJECT_DIR}"
       --dockerfile "${CI_PROJECT_DIR}/Dockerfile"
-      --destination "${CI_REGISTRY_IMAGE}:${CI_COMMIT_TAG}"
+      --destination "${CI_REGISTRY_IMAGE}/frontend:${CI_COMMIT_TAG}"
+
+image-creation-back:
+  stage: build-image
+  tags:
+    - personnal-docker
+  image:
+    name: gcr.io/kaniko-project/executor:v1.9.0-debug
+    entrypoint: [""]
+  before_script: []
+  script:
+    - /kaniko/executor
+      --context "${CI_PROJECT_DIR}"
+      --dockerfile "${CI_PROJECT_DIR}Projet/logger/Dockerfile"
+      --destination "${CI_REGISTRY_IMAGE}/logger:${CI_COMMIT_TAG}"
 
 create-package-job:
   stage: create-package
