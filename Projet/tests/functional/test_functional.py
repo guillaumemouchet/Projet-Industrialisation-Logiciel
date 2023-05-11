@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.service import Service
 from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.firefox.options import Options
-import pyperclip
+# import pyperclip # Woks locally
 
 
 class TestSeleniumFunctional:
@@ -18,13 +18,14 @@ class TestSeleniumFunctional:
             options=options
         )
 
-        # Opens HE-Arc website.
+        # Opens the front of EzPwd.
         browser.get("http://127.0.0.1:5000/")
 
-        # - Cliquer sur le bouton "Ra&D"
+        # Go on the home
         generate_button = browser.find_element(By.ID, "home_submit")
         generate_button.click()
 
+        # Renerate a password
         generated_pwd = browser.find_element(By.ID, "generated_pwd").text
         
         regenerat_btn = browser.find_element(By.ID, "regenerate")

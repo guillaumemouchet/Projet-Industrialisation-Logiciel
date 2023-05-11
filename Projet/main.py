@@ -18,21 +18,18 @@ special_characters = ["!", "@", "&", "$", "%", "^", "#", "*"]
 confusing_characters = ["l", "I", "O", "1", "0"]
 
 
+# Routing is viewed in the coverage but not tested, that's why the quality gate is at 75%
 @app.get("/")
 def hello():
     return render_template("home.html")
 
-
 @app.get("/display_password")
 def display_password():
-  
     pwd = session.get("pwd")
     pwd_len = session.get("pwd_len")
     is_readable = session.get("is_readable")
     return render_template("display_password.html", **locals())
 
-
-#@app.post("/generate_password")
 @app.route("/generate_password", methods=['POST'])
 def generate_password():
     pwd_len = request.form["pwd_len"]
@@ -54,10 +51,7 @@ def random_password(pwd_len, is_readable):
     except (TypeError, ValueError) as e:
         raise e("Please provide a valid integer")
 
-    #try:
     is_readable = bool(is_readable)
-    #except TypeError:
-    #    raise TypeError("Please provide a valid bool")
 
     if pwd_len < 1:
         raise ValueError("Please enter an integer above 0")
@@ -90,8 +84,6 @@ def random_password(pwd_len, is_readable):
     response = requests.post(logger_url, data={"log": log})
     if response.status_code != 200:
         print("Logging failed ", response.status_code)
-    # logPwd(pwd_len, is_readable)
-
     return "".join(pwd)
 
 

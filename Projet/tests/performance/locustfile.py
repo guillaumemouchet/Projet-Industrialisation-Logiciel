@@ -10,10 +10,6 @@ class ProjectPerfTest(HttpUser):
         """Tests the home page"""
         self.client.get("/")
 
-    #       Chaque test doit tester une route différente
-    #       Chaque test doit être executé 2 fois plus de fois que le précédent.
-
-    # Pas sur du truc
     @task(2)
     def about(self):
         """Tests the login page twice"""

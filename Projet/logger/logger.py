@@ -1,10 +1,7 @@
-from flask import Flask, render_template, request, redirect, url_for, session
-import string
-import random
-import datetime
+from flask import Flask, request
+
 
 # Project setup inspired from Flask workshop https://www.matthieuamiguet.ch/media/misc/flask2023/tuto/tuto.html
-
 
 app = Flask(__name__)
 
