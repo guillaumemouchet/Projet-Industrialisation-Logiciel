@@ -4,9 +4,15 @@ RUN addgroup --system nonroot && adduser --system --ingroup nonroot nonroot
 
 WORKDIR /app
 
-COPY . .
+RUN ls
 
-RUN Ls
+COPY requirements.txt requirements.txt
+
+RUN ls
+
+RUN pip3 install -r requirements.txt
+
+COPY . .
 
 RUN pip install Flask
 #ENV FLASK_DEBUG=true
