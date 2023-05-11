@@ -68,12 +68,27 @@ image-creation-back:
       --dockerfile "${CI_PROJECT_DIR}/Projet/logger/Dockerfile"
       --destination "${CI_REGISTRY_IMAGE}/logger:${CI_COMMIT_TAG}"
 
-create-package-job:
+create-package-job-front:
   stage: create-package
   tags:
     - personnal-docker
   image:
-    name: gitlab-etu.ing.he-arc.ch:5050/guillaum.mouchet/projet-indu-log:latest
+    name: gitlab-etu.ing.he-arc.ch:5050/guillaum.mouchet/projet-indu-log/frontend:latest
+  script:
+    - pip install build twine
+    - ls
+    - python setup.py bdist_wheel
+    - TWINE_PASSWORD=${CI_JOB_TOKEN} TWINE_USERNAME=gitlab-ci-token python -m twine upload --repository-url ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/pypi dist/*
+  artifacts:
+    paths:
+      - dist/*.whl
+
+create-package-job-back:
+  stage: create-package
+  tags:
+    - personnal-docker
+  image:
+    name: gitlab-etu.ing.he-arc.ch:5050/guillaum.mouchet/projet-indu-log/logger:latest
   script:
     - pip install build twine
     - ls
