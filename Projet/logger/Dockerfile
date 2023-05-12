@@ -2,7 +2,7 @@ FROM python:3.10
 
 RUN addgroup --system nonroot && adduser --system --ingroup nonroot nonroot
 
-WORKDIR /app
+WORKDIR /app/backend
 
 COPY requirements.txt requirements.txt
 
